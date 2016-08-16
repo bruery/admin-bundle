@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->booleanNode('use_footable')->defaultTrue()->info('Enables Admin list responsive table')->end()
                         ->scalarNode('skin')->defaultValue('skin-black')->info('AdminLTE Theme')->end()
+                        ->scalarNode('sidebar_collapse')->defaultTrue()->info('AdminLTE Side Bar Settings')->end()
                     ->end()
                 ->end()
                 ->arrayNode('pool')

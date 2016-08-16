@@ -51,6 +51,14 @@ class BrueryAdminExtension extends Extension
             $container->setParameter('bruery.admin.settings.skin', 'skin-black');
         }
 
+        if (isset($config['options']['sidebar_collapse'])) {
+            $container->setParameter('bruery.admin.settings.sidebar_collapse', $config['options']['sidebar_collapse']);
+        } else {
+            $container->setParameter('bruery.admin.settings.sidebar_collapse', false);
+        }
+
+
+
         $this->configureClassesToCompile();
     }
 
