@@ -123,7 +123,7 @@
                         {% spaceless %}
                             <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
                                 {% if 'single_image' == admin_pool.getOption('title_mode') or 'both' == admin_pool.getOption('title_mode') %}
-	                                <img class="logo-mini" src="{{ asset(admin_pool.titlelogo) }}" alt="{{ admin_pool.title }}">
+                                    <img class="logo-mini" src="{{ asset(admin_pool.titlelogo) }}" alt="{{ admin_pool.title }}">
                                     <img class="logo-lg" src="{{ asset(admin_pool.titlelogo) }}" alt="{{ admin_pool.title }}">
                                 {% endif %}
                                 {% if 'single_text' == admin_pool.getOption('title_mode') or 'both' == admin_pool.getOption('title_mode') %}
@@ -142,22 +142,34 @@
 
                             <div class="navbar-left">
                                 {% block sonata_breadcrumb %}
-                                    <div class="hidden-xs hidden-sm">
+                                    <div class="hidden-xs">
                                         {% if _breadcrumb is not empty or action is defined %}
                                             <ol class="nav navbar-top-links breadcrumb">
                                                 {% if _breadcrumb is empty %}
                                                     {% if action is defined %}
-                                                        {% for menu in admin.breadcrumbs(action) %}
+                                                        {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
+                                                            {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
+                                                            {%- set label = menu.label -%}
+                                                            {%- if translation_domain is not same as(false) -%}
+                                                                {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
+                                                            {%- endif -%}
+
                                                             {% if not loop.last  %}
                                                                 <li>
                                                                     {% if menu.uri is not empty %}
-                                                                        <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
+                                                                        <a href="{{ menu.uri }}">
+                                                                            {% if menu.extra('safe_label', true) %}
+                                                                                {{- label|raw -}}
+                                                                            {% else %}
+                                                                                {{- label -}}
+                                                                            {% endif %}
+                                                                        </a>
                                                                     {% else %}
-                                                                        {{ menu.label }}
+                                                                        {{ label }}
                                                                     {% endif %}
                                                                 </li>
                                                             {% else %}
-                                                                <li class="active"><span>{{ menu.label }}</span></li>
+                                                                <li class="active"><span>{{ label }}</span></li>
                                                             {% endif %}
                                                         {% endfor %}
                                                     {% endif %}
