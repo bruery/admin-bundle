@@ -372,7 +372,6 @@ div.mosaic-inner-box {
 .box-dashboard .user-block .description {
     margin-left: 10px !important;
 }
-
 /*----------------------------------------------- Retina displays fix ------------------------------------------------*/
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
     .select2-container .select2-choice abbr {
@@ -443,6 +442,25 @@ div.mosaic-inner-box {
  */
 .box {
     border-radius: 0px;
+}
+
+.has-error .checkbox,
+.has-error .checkbox-inline,
+.has-error .control-label,
+.has-error .help-block,
+.has-error .radio,
+.has-error .radio-inline,
+.has-error.checkbox label,
+.has-error.checkbox-inline label,
+.has-error.radio label,
+.has-error.radio-inline label,
+.has-error .input-group-addon
+{
+    color: #dd4b39;
+}
+
+.has-error .form-control, .has-error .input-group .input-group-addon {
+    border-color: #dd4b39;
 }
 
 /*

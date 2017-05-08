@@ -319,8 +319,6 @@ function _init() {
    */
   $.AdminLTE.pushMenu = {
     activate: function (toggleBtn) {
-
-      console.log('rommel');
       //Get the screen sizes
       var screenSizes = $.AdminLTE.options.screenSizes;
 
